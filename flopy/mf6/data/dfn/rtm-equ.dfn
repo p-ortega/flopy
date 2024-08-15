@@ -1,0 +1,32 @@
+# --------------------- rtm equ options ---------------------
+
+block options
+name export_array_ascii
+type keyword
+reader urword
+optional true
+mf6internal export_ascii
+longname export array variables to layered ascii files.
+description keyword that specifies input griddata arrays should be written to layered ascii output files.
+
+# --------------------- rtm equ griddata ---------------------
+
+block griddata
+name si
+type double precision
+shape (nodes)
+reader readarray
+layered true
+longname saturation index
+description saturation index.
+default_value 0.0
+
+block griddata
+name strt
+type double precision
+shape (nodes)
+reader readarray
+layered true
+longname starting phase concentration
+description is the initial (starting) concentration of the phase---that is, concentration (mol/m3) at the beginning of the RTM Model simulation.  One value is read for every model cell.
+default_value 0.0

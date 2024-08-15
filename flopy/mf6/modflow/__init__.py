@@ -1,4 +1,5 @@
 from .mfsimulation import MFSimulation  # isort:skip
+from .mfsimulation import MFSimulation
 from .mfems import ModflowEms
 from .mfgnc import ModflowGnc
 from .mfgwe import ModflowGwe
@@ -62,6 +63,7 @@ from .mfgwtdis import ModflowGwtdis
 from .mfgwtdisu import ModflowGwtdisu
 from .mfgwtdisv import ModflowGwtdisv
 from .mfgwtdsp import ModflowGwtdsp
+from .mfgwtequ import ModflowGwtequ
 from .mfgwtfmi import ModflowGwtfmi
 from .mfgwtgwt import ModflowGwtgwt
 from .mfgwtic import ModflowGwtic
@@ -89,7 +91,9 @@ from .mfprtnam import ModflowPrtnam
 from .mfprtoc import ModflowPrtoc
 from .mfprtprp import ModflowPrtprp
 from .mfpts import ModflowPts
-from .mfsimulation import MFSimulation
+from .mfrtm import ModflowRtm
+from .mfrtmequ import ModflowRtmequ
+from .mfrtmnam import ModflowRtmnam
 from .mftdis import ModflowTdis
 from .mfutlats import ModflowUtlats
 from .mfutlhpc import ModflowUtlhpc

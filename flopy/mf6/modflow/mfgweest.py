@@ -1,6 +1,6 @@
 # DO NOT MODIFY THIS FILE DIRECTLY.  THIS FILE MUST BE CREATED BY
 # mf6/utils/createpackages.py
-# FILE created on May 23, 2024 14:30:07 UTC
+# FILE created on August 15, 2024 07:02:43 UTC
 from .. import mfpackage
 from ..data.mfdatautil import ArrayTemplateGenerator, ListTemplateGenerator
 
@@ -70,144 +70,60 @@ class ModflowGweest(mfpackage.MFPackage):
         Package name for this package.
     parent_file : MFPackage
         Parent package file that references this package. Only needed for
-        utility packages (mfutl*). For example, mfutllaktab package must have
+        utility packages (mfutl*). For example, mfutllaktab package must have 
         a mfgwflak package parent_file.
 
     """
-
-    porosity = ArrayTemplateGenerator(("gwe6", "est", "griddata", "porosity"))
-    decay = ArrayTemplateGenerator(("gwe6", "est", "griddata", "decay"))
-    cps = ArrayTemplateGenerator(("gwe6", "est", "griddata", "cps"))
-    rhos = ArrayTemplateGenerator(("gwe6", "est", "griddata", "rhos"))
-    packagedata = ListTemplateGenerator(
-        ("gwe6", "est", "packagedata", "packagedata")
-    )
+    porosity = ArrayTemplateGenerator(('gwe6', 'est', 'griddata',
+                                       'porosity'))
+    decay = ArrayTemplateGenerator(('gwe6', 'est', 'griddata', 'decay'))
+    cps = ArrayTemplateGenerator(('gwe6', 'est', 'griddata', 'cps'))
+    rhos = ArrayTemplateGenerator(('gwe6', 'est', 'griddata', 'rhos'))
+    packagedata = ListTemplateGenerator(('gwe6', 'est', 'packagedata',
+                                         'packagedata'))
     package_abbr = "gweest"
     _package_type = "est"
     dfn_file_name = "gwe-est.dfn"
 
     dfn = [
-        [
-            "header",
-        ],
-        [
-            "block options",
-            "name save_flows",
-            "type keyword",
-            "reader urword",
-            "optional true",
-        ],
-        [
-            "block options",
-            "name zero_order_decay",
-            "type keyword",
-            "reader urword",
-            "optional true",
-        ],
-        [
-            "block options",
-            "name latent_heat_vaporization",
-            "type keyword",
-            "reader urword",
-            "optional true",
-        ],
-        [
-            "block griddata",
-            "name porosity",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-        ],
-        [
-            "block griddata",
-            "name decay",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-            "optional true",
-        ],
-        [
-            "block griddata",
-            "name cps",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-        ],
-        [
-            "block griddata",
-            "name rhos",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-        ],
-        [
-            "block packagedata",
-            "name packagedata",
-            "type recarray cpw rhow latheatvap",
-            "shape",
-            "reader urword",
-        ],
-        [
-            "block packagedata",
-            "name cpw",
-            "type double precision",
-            "shape",
-            "tagged false",
-            "in_record true",
-            "reader urword",
-        ],
-        [
-            "block packagedata",
-            "name rhow",
-            "type double precision",
-            "shape",
-            "tagged false",
-            "in_record true",
-            "reader urword",
-        ],
-        [
-            "block packagedata",
-            "name latheatvap",
-            "type double precision",
-            "shape",
-            "tagged false",
-            "in_record true",
-            "reader urword",
-        ],
-    ]
+           ["header", ],
+           ["block options", "name save_flows", "type keyword",
+            "reader urword", "optional true"],
+           ["block options", "name zero_order_decay", "type keyword",
+            "reader urword", "optional true"],
+           ["block options", "name latent_heat_vaporization",
+            "type keyword", "reader urword", "optional true"],
+           ["block griddata", "name porosity", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true"],
+           ["block griddata", "name decay", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true",
+            "optional true"],
+           ["block griddata", "name cps", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true"],
+           ["block griddata", "name rhos", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true"],
+           ["block packagedata", "name packagedata",
+            "type recarray cpw rhow latheatvap", "shape", "reader urword"],
+           ["block packagedata", "name cpw", "type double precision",
+            "shape", "tagged false", "in_record true", "reader urword"],
+           ["block packagedata", "name rhow", "type double precision",
+            "shape", "tagged false", "in_record true", "reader urword"],
+           ["block packagedata", "name latheatvap", "type double precision",
+            "shape", "tagged false", "in_record true", "reader urword"]]
 
-    def __init__(
-        self,
-        model,
-        loading_package=False,
-        save_flows=None,
-        zero_order_decay=None,
-        latent_heat_vaporization=None,
-        porosity=None,
-        decay=None,
-        cps=None,
-        rhos=None,
-        packagedata=None,
-        filename=None,
-        pname=None,
-        **kwargs,
-    ):
-        super().__init__(
-            model, "est", filename, pname, loading_package, **kwargs
-        )
+    def __init__(self, model, loading_package=False, save_flows=None,
+                 zero_order_decay=None, latent_heat_vaporization=None,
+                 porosity=None, decay=None, cps=None, rhos=None,
+                 packagedata=None, filename=None, pname=None, **kwargs):
+        super().__init__(model, "est", filename, pname,
+                         loading_package, **kwargs)
 
         # set up variables
         self.save_flows = self.build_mfdata("save_flows", save_flows)
-        self.zero_order_decay = self.build_mfdata(
-            "zero_order_decay", zero_order_decay
-        )
+        self.zero_order_decay = self.build_mfdata("zero_order_decay",
+                                                  zero_order_decay)
         self.latent_heat_vaporization = self.build_mfdata(
-            "latent_heat_vaporization", latent_heat_vaporization
-        )
+            "latent_heat_vaporization", latent_heat_vaporization)
         self.porosity = self.build_mfdata("porosity", porosity)
         self.decay = self.build_mfdata("decay", decay)
         self.cps = self.build_mfdata("cps", cps)

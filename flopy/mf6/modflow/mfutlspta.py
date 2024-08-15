@@ -1,6 +1,6 @@
 # DO NOT MODIFY THIS FILE DIRECTLY.  THIS FILE MUST BE CREATED BY
 # mf6/utils/createpackages.py
-# FILE created on May 23, 2024 14:30:07 UTC
+# FILE created on August 15, 2024 07:02:43 UTC
 from .. import mfpackage
 from ..data.mfdatautil import ArrayTemplateGenerator, ListTemplateGenerator
 
@@ -45,126 +45,57 @@ class ModflowUtlspta(mfpackage.MFPackage):
         Package name for this package.
     parent_file : MFPackage
         Parent package file that references this package. Only needed for
-        utility packages (mfutl*). For example, mfutllaktab package must have
+        utility packages (mfutl*). For example, mfutllaktab package must have 
         a mfgwflak package parent_file.
 
     """
-
-    tas_filerecord = ListTemplateGenerator(
-        ("spta", "options", "tas_filerecord")
-    )
-    temperature = ArrayTemplateGenerator(("spta", "period", "temperature"))
+    tas_filerecord = ListTemplateGenerator(('spta', 'options',
+                                            'tas_filerecord'))
+    temperature = ArrayTemplateGenerator(('spta', 'period',
+                                          'temperature'))
     package_abbr = "utlspta"
     _package_type = "spta"
     dfn_file_name = "utl-spta.dfn"
 
     dfn = [
-        [
-            "header",
-            "multi-package",
-        ],
-        [
-            "block options",
-            "name readasarrays",
-            "type keyword",
-            "shape",
-            "reader urword",
-            "optional false",
-            "default_value True",
-        ],
-        [
-            "block options",
-            "name print_input",
-            "type keyword",
-            "reader urword",
-            "optional true",
-        ],
-        [
-            "block options",
-            "name tas_filerecord",
-            "type record tas6 filein tas6_filename",
-            "shape",
-            "reader urword",
-            "tagged true",
-            "optional true",
-            "construct_package tas",
-            "construct_data tas_array",
-            "parameter_name timearrayseries",
-        ],
-        [
-            "block options",
-            "name tas6",
-            "type keyword",
-            "shape",
-            "in_record true",
-            "reader urword",
-            "tagged true",
-            "optional false",
-        ],
-        [
-            "block options",
-            "name filein",
-            "type keyword",
-            "shape",
-            "in_record true",
-            "reader urword",
-            "tagged true",
-            "optional false",
-        ],
-        [
-            "block options",
-            "name tas6_filename",
-            "type string",
-            "preserve_case true",
-            "in_record true",
-            "reader urword",
-            "optional false",
-            "tagged false",
-        ],
-        [
-            "block period",
-            "name iper",
-            "type integer",
-            "block_variable True",
-            "in_record true",
-            "tagged false",
-            "shape",
-            "valid",
-            "reader urword",
-            "optional false",
-        ],
-        [
-            "block period",
-            "name temperature",
-            "type double precision",
-            "shape (ncol*nrow; ncpl)",
-            "reader readarray",
-            "default_value 0.",
-        ],
-    ]
+           ["header", 
+            "multi-package", ],
+           ["block options", "name readasarrays", "type keyword", "shape",
+            "reader urword", "optional false", "default_value True"],
+           ["block options", "name print_input", "type keyword",
+            "reader urword", "optional true"],
+           ["block options", "name tas_filerecord",
+            "type record tas6 filein tas6_filename", "shape", "reader urword",
+            "tagged true", "optional true", "construct_package tas",
+            "construct_data tas_array", "parameter_name timearrayseries"],
+           ["block options", "name tas6", "type keyword", "shape",
+            "in_record true", "reader urword", "tagged true",
+            "optional false"],
+           ["block options", "name filein", "type keyword", "shape",
+            "in_record true", "reader urword", "tagged true",
+            "optional false"],
+           ["block options", "name tas6_filename", "type string",
+            "preserve_case true", "in_record true", "reader urword",
+            "optional false", "tagged false"],
+           ["block period", "name iper", "type integer",
+            "block_variable True", "in_record true", "tagged false", "shape",
+            "valid", "reader urword", "optional false"],
+           ["block period", "name temperature", "type double precision",
+            "shape (ncol*nrow; ncpl)", "reader readarray", "default_value 0."]]
 
-    def __init__(
-        self,
-        model,
-        loading_package=False,
-        readasarrays=True,
-        print_input=None,
-        timearrayseries=None,
-        temperature=0.0,
-        filename=None,
-        pname=None,
-        **kwargs,
-    ):
-        super().__init__(
-            model, "spta", filename, pname, loading_package, **kwargs
-        )
+    def __init__(self, model, loading_package=False, readasarrays=True,
+                 print_input=None, timearrayseries=None, temperature=0.,
+                 filename=None, pname=None, **kwargs):
+        super().__init__(model, "spta", filename, pname,
+                         loading_package, **kwargs)
 
         # set up variables
         self.readasarrays = self.build_mfdata("readasarrays", readasarrays)
         self.print_input = self.build_mfdata("print_input", print_input)
-        self._tas_filerecord = self.build_mfdata("tas_filerecord", None)
-        self._tas_package = self.build_child_package(
-            "tas", timearrayseries, "tas_array", self._tas_filerecord
-        )
+        self._tas_filerecord = self.build_mfdata("tas_filerecord",
+                                                 None)
+        self._tas_package = self.build_child_package("tas", timearrayseries,
+                                                     "tas_array",
+                                                     self._tas_filerecord)
         self.temperature = self.build_mfdata("temperature", temperature)
         self._init_complete = True

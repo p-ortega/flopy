@@ -1,6 +1,6 @@
 # DO NOT MODIFY THIS FILE DIRECTLY.  THIS FILE MUST BE CREATED BY
 # mf6/utils/createpackages.py
-# FILE created on May 23, 2024 14:30:07 UTC
+# FILE created on August 15, 2024 07:02:43 UTC
 from .. import mfpackage
 from ..data.mfdatautil import ArrayTemplateGenerator
 
@@ -79,143 +79,63 @@ class ModflowGwecnd(mfpackage.MFPackage):
         Package name for this package.
     parent_file : MFPackage
         Parent package file that references this package. Only needed for
-        utility packages (mfutl*). For example, mfutllaktab package must have
+        utility packages (mfutl*). For example, mfutllaktab package must have 
         a mfgwflak package parent_file.
 
     """
-
-    alh = ArrayTemplateGenerator(("gwe6", "cnd", "griddata", "alh"))
-    alv = ArrayTemplateGenerator(("gwe6", "cnd", "griddata", "alv"))
-    ath1 = ArrayTemplateGenerator(("gwe6", "cnd", "griddata", "ath1"))
-    ath2 = ArrayTemplateGenerator(("gwe6", "cnd", "griddata", "ath2"))
-    atv = ArrayTemplateGenerator(("gwe6", "cnd", "griddata", "atv"))
-    ktw = ArrayTemplateGenerator(("gwe6", "cnd", "griddata", "ktw"))
-    kts = ArrayTemplateGenerator(("gwe6", "cnd", "griddata", "kts"))
+    alh = ArrayTemplateGenerator(('gwe6', 'cnd', 'griddata', 'alh'))
+    alv = ArrayTemplateGenerator(('gwe6', 'cnd', 'griddata', 'alv'))
+    ath1 = ArrayTemplateGenerator(('gwe6', 'cnd', 'griddata', 'ath1'))
+    ath2 = ArrayTemplateGenerator(('gwe6', 'cnd', 'griddata', 'ath2'))
+    atv = ArrayTemplateGenerator(('gwe6', 'cnd', 'griddata', 'atv'))
+    ktw = ArrayTemplateGenerator(('gwe6', 'cnd', 'griddata', 'ktw'))
+    kts = ArrayTemplateGenerator(('gwe6', 'cnd', 'griddata', 'kts'))
     package_abbr = "gwecnd"
     _package_type = "cnd"
     dfn_file_name = "gwe-cnd.dfn"
 
     dfn = [
-        [
-            "header",
-        ],
-        [
-            "block options",
-            "name xt3d_off",
-            "type keyword",
-            "shape",
-            "reader urword",
-            "optional true",
-        ],
-        [
-            "block options",
-            "name xt3d_rhs",
-            "type keyword",
-            "shape",
-            "reader urword",
-            "optional true",
-        ],
-        [
-            "block options",
-            "name export_array_ascii",
-            "type keyword",
-            "reader urword",
-            "optional true",
-            "mf6internal export_ascii",
-        ],
-        [
-            "block griddata",
-            "name alh",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-            "optional true",
-        ],
-        [
-            "block griddata",
-            "name alv",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-            "optional true",
-        ],
-        [
-            "block griddata",
-            "name ath1",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-            "optional true",
-        ],
-        [
-            "block griddata",
-            "name ath2",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-            "optional true",
-        ],
-        [
-            "block griddata",
-            "name atv",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-            "optional true",
-        ],
-        [
-            "block griddata",
-            "name ktw",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-            "optional true",
-        ],
-        [
-            "block griddata",
-            "name kts",
-            "type double precision",
-            "shape (nodes)",
-            "reader readarray",
-            "layered true",
-            "optional true",
-        ],
-    ]
+           ["header", ],
+           ["block options", "name xt3d_off", "type keyword", "shape",
+            "reader urword", "optional true"],
+           ["block options", "name xt3d_rhs", "type keyword", "shape",
+            "reader urword", "optional true"],
+           ["block options", "name export_array_ascii", "type keyword",
+            "reader urword", "optional true", "mf6internal export_ascii"],
+           ["block griddata", "name alh", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true",
+            "optional true"],
+           ["block griddata", "name alv", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true",
+            "optional true"],
+           ["block griddata", "name ath1", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true",
+            "optional true"],
+           ["block griddata", "name ath2", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true",
+            "optional true"],
+           ["block griddata", "name atv", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true",
+            "optional true"],
+           ["block griddata", "name ktw", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true",
+            "optional true"],
+           ["block griddata", "name kts", "type double precision",
+            "shape (nodes)", "reader readarray", "layered true",
+            "optional true"]]
 
-    def __init__(
-        self,
-        model,
-        loading_package=False,
-        xt3d_off=None,
-        xt3d_rhs=None,
-        export_array_ascii=None,
-        alh=None,
-        alv=None,
-        ath1=None,
-        ath2=None,
-        atv=None,
-        ktw=None,
-        kts=None,
-        filename=None,
-        pname=None,
-        **kwargs,
-    ):
-        super().__init__(
-            model, "cnd", filename, pname, loading_package, **kwargs
-        )
+    def __init__(self, model, loading_package=False, xt3d_off=None,
+                 xt3d_rhs=None, export_array_ascii=None, alh=None, alv=None,
+                 ath1=None, ath2=None, atv=None, ktw=None, kts=None,
+                 filename=None, pname=None, **kwargs):
+        super().__init__(model, "cnd", filename, pname,
+                         loading_package, **kwargs)
 
         # set up variables
         self.xt3d_off = self.build_mfdata("xt3d_off", xt3d_off)
         self.xt3d_rhs = self.build_mfdata("xt3d_rhs", xt3d_rhs)
-        self.export_array_ascii = self.build_mfdata(
-            "export_array_ascii", export_array_ascii
-        )
+        self.export_array_ascii = self.build_mfdata("export_array_ascii",
+                                                    export_array_ascii)
         self.alh = self.build_mfdata("alh", alh)
         self.alv = self.build_mfdata("alv", alv)
         self.ath1 = self.build_mfdata("ath1", ath1)
