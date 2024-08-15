@@ -63,7 +63,6 @@ from .mfgwtdis import ModflowGwtdis
 from .mfgwtdisu import ModflowGwtdisu
 from .mfgwtdisv import ModflowGwtdisv
 from .mfgwtdsp import ModflowGwtdsp
-from .mfgwtequ import ModflowGwtequ
 from .mfgwtfmi import ModflowGwtfmi
 from .mfgwtgwt import ModflowGwtgwt
 from .mfgwtic import ModflowGwtic
@@ -92,6 +91,8 @@ from .mfprtoc import ModflowPrtoc
 from .mfprtprp import ModflowPrtprp
 from .mfpts import ModflowPts
 from .mfrtm import ModflowRtm
+from .mfrtmdis import ModflowRtmdis
+from .mfrtmdisv import ModflowRtmdisv
 from .mfrtmequ import ModflowRtmequ
 from .mfrtmnam import ModflowRtmnam
 from .mftdis import ModflowTdis

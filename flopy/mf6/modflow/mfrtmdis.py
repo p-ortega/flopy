@@ -5,9 +5,9 @@ from .. import mfpackage
 from ..data.mfdatautil import ArrayTemplateGenerator
 
 
-class ModflowPrtdis(mfpackage.MFPackage):
+class ModflowRtmdis(mfpackage.MFPackage):
     """
-    ModflowPrtdis defines a dis package within a prt6 model.
+    ModflowRtmdis defines a dis package within a rtm6 model.
 
     Parameters
     ----------
@@ -82,15 +82,15 @@ class ModflowPrtdis(mfpackage.MFPackage):
         a mfgwflak package parent_file.
 
     """
-    delr = ArrayTemplateGenerator(('prt6', 'dis', 'griddata', 'delr'))
-    delc = ArrayTemplateGenerator(('prt6', 'dis', 'griddata', 'delc'))
-    top = ArrayTemplateGenerator(('prt6', 'dis', 'griddata', 'top'))
-    botm = ArrayTemplateGenerator(('prt6', 'dis', 'griddata', 'botm'))
-    idomain = ArrayTemplateGenerator(('prt6', 'dis', 'griddata',
+    delr = ArrayTemplateGenerator(('rtm6', 'dis', 'griddata', 'delr'))
+    delc = ArrayTemplateGenerator(('rtm6', 'dis', 'griddata', 'delc'))
+    top = ArrayTemplateGenerator(('rtm6', 'dis', 'griddata', 'top'))
+    botm = ArrayTemplateGenerator(('rtm6', 'dis', 'griddata', 'botm'))
+    idomain = ArrayTemplateGenerator(('rtm6', 'dis', 'griddata',
                                       'idomain'))
-    package_abbr = "prtdis"
+    package_abbr = "rtmdis"
     _package_type = "dis"
-    dfn_file_name = "prt-dis.dfn"
+    dfn_file_name = "rtm-dis.dfn"
 
     dfn = [
            ["header", ],

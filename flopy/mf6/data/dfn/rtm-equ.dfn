@@ -12,7 +12,7 @@ description keyword that specifies input griddata arrays should be written to la
 # --------------------- rtm equ griddata ---------------------
 
 block griddata
-name si
+name sat_index
 type double precision
 shape (nodes)
 reader readarray

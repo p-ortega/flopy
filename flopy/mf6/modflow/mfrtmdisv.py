@@ -5,9 +5,9 @@ from .. import mfpackage
 from ..data.mfdatautil import ArrayTemplateGenerator, ListTemplateGenerator
 
 
-class ModflowGwtdisv(mfpackage.MFPackage):
+class ModflowRtmdisv(mfpackage.MFPackage):
     """
-    ModflowGwtdisv defines a disv package within a gwt6 model.
+    ModflowRtmdisv defines a disv package within a rtm6 model.
 
     Parameters
     ----------
@@ -110,16 +110,16 @@ class ModflowGwtdisv(mfpackage.MFPackage):
         a mfgwflak package parent_file.
 
     """
-    top = ArrayTemplateGenerator(('gwt6', 'disv', 'griddata', 'top'))
-    botm = ArrayTemplateGenerator(('gwt6', 'disv', 'griddata', 'botm'))
-    idomain = ArrayTemplateGenerator(('gwt6', 'disv', 'griddata',
+    top = ArrayTemplateGenerator(('rtm6', 'disv', 'griddata', 'top'))
+    botm = ArrayTemplateGenerator(('rtm6', 'disv', 'griddata', 'botm'))
+    idomain = ArrayTemplateGenerator(('rtm6', 'disv', 'griddata',
                                       'idomain'))
-    vertices = ListTemplateGenerator(('gwt6', 'disv', 'vertices',
+    vertices = ListTemplateGenerator(('rtm6', 'disv', 'vertices',
                                       'vertices'))
-    cell2d = ListTemplateGenerator(('gwt6', 'disv', 'cell2d', 'cell2d'))
-    package_abbr = "gwtdisv"
+    cell2d = ListTemplateGenerator(('rtm6', 'disv', 'cell2d', 'cell2d'))
+    package_abbr = "rtmdisv"
     _package_type = "disv"
-    dfn_file_name = "gwt-disv.dfn"
+    dfn_file_name = "rtm-disv.dfn"
 
     dfn = [
            ["header", ],
